@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gatikofrontend-dev-134653-authRole",
+      "UnauthRoleArn": "arn:aws:iam::818297291261:role/amplify-gatikofrontend-dev-134653-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::818297291261:role/amplify-gatikofrontend-dev-134653-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-gatikofrontend-dev-134653-deployment",
+      "UnauthRoleName": "amplify-gatikofrontend-dev-134653-unauthRole",
+      "StackName": "amplify-gatikofrontend-dev-134653",
+      "StackId": "arn:aws:cloudformation:us-east-1:818297291261:stack/amplify-gatikofrontend-dev-134653/2e6bad70-2736-11ee-8ac1-0eb37bd1e6d7",
+      "AmplifyAppId": "dhcw3uwdhccey"
+    },
+    "categories": {
+      "auth": {
+        "gatikofrontend3ff5993e": {}
+      },
+      "function": {
+        "gatikofrontende2ddee95": {}
+      }
+    }
+  }
+}

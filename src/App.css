@@ -1,0 +1,16 @@
+.PostDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.square-div {
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 10px;
+}
+
+.post {
+  display: grid;
+  justify-content: center;
+  margin-top: 2rem;
+}
