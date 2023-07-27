@@ -25,6 +25,9 @@ export default function RegisterModal({ open, handleClose }) {
         },
       });
       console.log(user);
+      setEmail('');
+      setPassword('');
+      handleClose();
     } catch (error) {
       console.log('error signing up:', error);
     }
