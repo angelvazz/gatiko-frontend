@@ -5,7 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import './CSS/NewPost.css';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, graphqlOperation, Auth } from 'aws-amplify';
 
 export default function NewPost({ login, fetchPosts }) {
   const [content, setContent] = useState('');
@@ -35,17 +35,23 @@ export default function NewPost({ login, fetchPosts }) {
            }
               }`;
 
-      console.log('content:', postDetails.content);
-      console.log('userId:', postDetails.userId);
-      console.log('userName:', postDetails.userName);
+      // Obtiene el token del usuario autenticado
+      const currentUser = await Auth.currentAuthenticatedUser();
+      const token = currentUser.signInUserSession.idToken.jwtToken;
 
-      await API.graphql(
-        graphqlOperation(createPostMutation, {
+      const myInit = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        response: true,
+        body: {
           content: postDetails.content,
           userId: postDetails.userId,
           userName: postDetails.userName,
-        })
-      );
+        },
+      };
+
+      await API.graphql(graphqlOperation(createPostMutation, myInit));
       setContent(''); // limpia el TextField después de enviar
       fetchPosts();
     } catch (error) {
