@@ -51,6 +51,10 @@ export default function NewPost({ login, fetchPosts }) {
         },
       };
 
+      console.log('content:', postDetails.content);
+      console.log('userId:', postDetails.userId);
+      console.log('userName:', postDetails.userName);
+
       await API.graphql(graphqlOperation(createPostMutation, myInit));
       setContent(''); // limpia el TextField después de enviar
       fetchPosts();
