@@ -40,19 +40,18 @@ export default function Post({
     const newContent = prompt('Enter new content', content);
     if (newContent) {
       const updatePostMutation = `
-      mutation UpdatePost($id: ID!, $content: String!) {
-        updatePost(id: $id, content: $content) {
-          id
-          content
-        }
+    mutation UpdatePost($input: UpdatePostInput!) {
+      updatePost(input: $input) {
+        id
+        content
       }
-    `;
+    }
+  `;
 
       try {
         await API.graphql(
           graphqlOperation(updatePostMutation, {
-            id,
-            content: newContent,
+            input: { id, content: newContent },
           })
         );
         fetchPosts();
@@ -69,15 +68,17 @@ export default function Post({
     );
     if (confirmDelete) {
       const deletePostMutation = `
-      mutation DeletePost($id: ID!) {
-        deletePost(id: $id) {
-          id
-        }
+    mutation DeletePost($input: DeletePostInput!) {
+      deletePost(input: $input) {
+        id
       }
-    `;
+    }
+  `;
 
       try {
-        await API.graphql(graphqlOperation(deletePostMutation, { id }));
+        await API.graphql(
+          graphqlOperation(deletePostMutation, { input: { id } })
+        );
         fetchPosts();
       } catch (error) {
         console.error('Error deleting post:', error);

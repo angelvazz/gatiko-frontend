@@ -26,37 +26,24 @@ export default function NewPost({ login, fetchPosts }) {
         userName: user.username,
       };
 
-      // Definir la mutación GraphQL directamente
-      const createPostMutation = `mutation CreatePost($content: String!, $userId: String!, $userName: String!) {
-      createPost(content: $content, userId: $userId, userName: $userName) {
-       content
-       userId
-       userName
-           }
-              }`;
-
-      // Obtiene el token del usuario autenticado
-      const currentUser = await Auth.currentAuthenticatedUser();
-      const token = currentUser.signInUserSession.idToken.jwtToken;
-
-      const myInit = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        response: true,
-        body: {
-          content: postDetails.content,
-          userId: postDetails.userId,
-          userName: postDetails.userName,
-        },
-      };
+      const createPostMutation = `mutation CreatePost($input: CreatePostInput!) {
+      createPost(input: $input) {
+        id
+        content
+        userId
+        userName
+        createdAt
+      }
+    }`;
 
       console.log('content:', postDetails.content);
       console.log('userId:', postDetails.userId);
       console.log('userName:', postDetails.userName);
 
-      await API.graphql(graphqlOperation(createPostMutation, myInit));
-      setContent(''); // limpia el TextField después de enviar
+      await API.graphql(
+        graphqlOperation(createPostMutation, { input: postDetails })
+      );
+      setContent('');
       fetchPosts();
     } catch (error) {
       console.error('Error sending post:', error);
