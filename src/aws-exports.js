@@ -6,11 +6,12 @@ const awsconfig = {
   identityPoolId: 'us-east-1:4f9573b2-4793-49af-b597-95a58249a815 ',
   userPoolId: 'us-east-1_7cpltWom7',
   userPoolWebClientId: '262ggkf4i941h0o80m85a7f33i',
+
   aws_appsync_graphqlEndpoint:
     'https://3o3lxzsr7jeo5cqsaf7fyvz7ce.appsync-api.us-east-1.amazonaws.com/graphql',
   aws_appsync_region: 'us-east-1',
   aws_appsync_authenticationType: 'API_KEY',
-  aws_appsync_apiKey: 'da2-da2-k4kf5mpxsfgkbbds7wdno7ig4i',
+  aws_appsync_apiKey: 'da2-zyjarprhsjgglcb3ritlg57hhe',
 };
 
 export default awsconfig;
